@@ -1,3 +1,7 @@
+generated.png
+image_cache/
+cache/
+
 # Logs
 logs
 *.log

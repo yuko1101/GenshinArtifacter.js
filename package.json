@@ -1,0 +1,24 @@
+{
+  "name": "genshinartifacter",
+  "version": "1.0.0",
+  "description": "HyugoさんのArtifacterのNode.js版です",
+  "main": "generate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuko1101/GenshinArtifacter.js.git"
+  },
+  "keywords": [],
+  "author": "yuko1101 (https://github.com/yuko1101)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuko1101/GenshinArtifacter.js/issues"
+  },
+  "homepage": "https://github.com/yuko1101/GenshinArtifacter.js#readme",
+  "dependencies": {
+    "canvas": "^2.11.0",
+    "enka-network-api": "^2.3.2"
+  }
+}
