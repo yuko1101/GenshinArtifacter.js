@@ -27,5 +27,20 @@ node generate.js
 注意: Windows上では原神のフォントが正しく読み込まれない場合があります。
 Docker等の使用を検討してください。(MacOSは未検証、Linuxでは問題なく読み込まれます)
 
+### Dockerの使用
+1.イメージの作成
+```shell
+docker build . -t yuko1101/GenshinArtifacter.js
+```
+
+2.コンテナの起動
+```shell
+docker container run --name artifacter yuko1101/genshin-artifacter:latest
+```
+
+3.生成された画像をコンテナからコピー
+```shell
+docker cp artifacter:/usr/src/app/generated.png .
+```
 ## クレジット
 - [FuroBath/ArtifacterImageGen](https://github.com/FuroBath/ArtifacterImageGen) - [MIT License](https://github.com/FuroBath/ArtifacterImageGen/blob/master/LICENSE)
