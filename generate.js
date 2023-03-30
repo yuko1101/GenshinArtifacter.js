@@ -115,28 +115,59 @@ async function generateImage(character, buildElements) {
     const weaponRarityImage = await loadImage(`./assets/rarity/${character.weapon.weaponData.stars}.png`);
     const weaponMainStat = character.weapon.weaponStats[0];
     const weaponSubStat = character.weapon.weaponStats[1];
-    const weaponMainStatImage = weaponMainStat ? await loadImage(`./assets/fight_prop/${weaponMainStat.id}.png`) : null;
-    const weaponSubStatImage = weaponSubStat ? await loadImage(`./assets/fight_prop/${weaponSubStat.id}.png`) : null;
 
-    const talentBackground = await loadImage("./assets/talent_background.png");
+    const imagePromises = [
+        weaponMainStat ? loadImage(`./assets/fight_prop/${weaponMainStat.id}.png`) : async () => null,
+        weaponSubStat ? loadImage(`./assets/fight_prop/${weaponSubStat.id}.png`) : async () => null,
 
-    const constellationBackground = await loadImage(`./assets/constellations/${character.characterData.element.id}.png`);
-    const constellationLock = await loadImage(`./assets/constellations/${character.characterData.element.id}_lock.png`);
+        loadImage("./assets/talent_background.png"),
 
-    const artifactMask = await loadImage("./assets/masks/artifact_mask.png");
-    const artifactBrightness = await loadImage("./assets/masks/artifact_brightness.png");
+        loadImage(`./assets/constellations/${character.characterData.element.id}.png`),
+        loadImage(`./assets/constellations/${character.characterData.element.id}_lock.png`),
 
-    const friendship = await loadImage("./assets/misc/friendship.png");
+        loadImage("./assets/masks/artifact_mask.png"),
+        loadImage("./assets/masks/artifact_brightness.png"),
 
-    const damageBonus = await loadImage(`./assets/fight_prop/${(character.status.highestDamageBonus?.[0] || character.status.matchedElementDamage).id}.png`);
+        loadImage("./assets/misc/friendship.png"),
 
-    const scoreSS = await loadImage("./assets/score/SS.png");
-    const scoreS = await loadImage("./assets/score/S.png");
-    const scoreA = await loadImage("./assets/score/A.png");
-    const scoreB = await loadImage("./assets/score/B.png");
+        loadImage(`./assets/fight_prop/${(character.status.highestDamageBonus?.[0] || character.status.matchedElementDamage).id}.png`),
 
-    const shadow = await loadImage("./assets/masks/shadow.png");
-    const image = await loadImage(`./assets/base/${character.characterData.element.id}.png`);
+        loadImage("./assets/score/SS.png"),
+        loadImage("./assets/score/S.png"),
+        loadImage("./assets/score/A.png"),
+        loadImage("./assets/score/B.png"),
+
+        loadImage("./assets/masks/shadow.png"),
+        loadImage(`./assets/base/${character.characterData.element.id}.png`),
+    ];
+
+    const [
+        weaponMainStatImage,
+        weaponSubStatImage,
+
+        talentBackground,
+
+        constellationBackground,
+        constellationLock,
+
+        artifactMask,
+        artifactBrightness,
+
+        friendship,
+
+        damageBonus,
+
+        scoreSS,
+        scoreS,
+        scoreA,
+        scoreB,
+
+        shadow,
+        image,
+
+
+    ] = await Promise.all(imagePromises);
+
     const canvas = createCanvas(image.width, image.height);
     const ctx = canvas.getContext("2d");
     ctx.textBaseline = "top";
